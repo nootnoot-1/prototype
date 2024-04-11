@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/BattleUI/BattleUI_uss.uss?fileID=7433441132597879392&amp;guid=f4321aaebcdf78f489640ae0889c2b23&amp;type=3#BattleUI_uss" />
+    <ui:VisualElement class = "overlay">
+        <ui:VisualElement class = "header">
+            <ui:VisualElement class = "health-bar">
+                <ui:VisualElement class = "health-bar-fill">
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class = "body">
+        </ui:VisualElement>
+        <ui:VisualElement class = "footer">
+            <ui:VisualElement class = "menu-options">
+                <ui:VisualElement class = "menu-option  menu-option-active">
+                    <ui:Label text = "Attack"/>
+                </ui:VisualElement>
+                <ui:VisualElement class = "menu-option">
+                    <ui:Label text = "Item"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
