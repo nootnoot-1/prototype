@@ -54,11 +54,7 @@ public class BattleSystem : MonoBehaviour
         int maxBmIndex = 1;
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (bmIndex == 0) {
-                //update to AttackMenu
-                battleUI_script.RemoveCurrentMenu();
-                battleUI_script.BuildAttackMenu(player_script.GetAttackNames());
-                //change battleState to AttackMenu
-                battleState = BattleState.AttackMenu;
+                SwitchBattleState(BattleState.AttackMenu);
             } else if (bmIndex == 1) {
                 //update to ItemMenu
                 //change battleState to ItemMenu
@@ -89,6 +85,7 @@ public class BattleSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             Attack attack = player_script.GetAttackAt(amIndex);
             enemy_script.RecieveAttack(attack);
+            SwitchBattleState(BattleState.EnemyTurn);
         }
         if (Input.GetKeyDown(KeyCode.A)) {
             if (amIndex == 0) {
@@ -110,6 +107,21 @@ public class BattleSystem : MonoBehaviour
         }
     }
     void TargetMenuInput() {}
-    void EnemyTurnInput() {}
+    void EnemyTurnInput() {
+        player_script.RecieveAttack(enemy_script.MakeAttack());
+        SwitchBattleState(BattleState.BaseMenu);
+    }
+
+    void SwitchBattleState(BattleState newBattleState) {
+        battleUI_script.RemoveCurrentMenu();
+        if (newBattleState == BattleState.BaseMenu) {
+            bmIndex = 0;
+            battleUI_script.BuildBaseMenu();
+        } else if (newBattleState == BattleState.AttackMenu) {
+            amIndex = 0;
+            battleUI_script.BuildAttackMenu(player_script.GetAttackNames());
+        } else if (newBattleState == BattleState.EnemyTurn) {}
+        battleState = newBattleState;
+    }
 
 }

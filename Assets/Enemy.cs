@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] int attackStat = 6;
     [SerializeField] int defenseStat = 2;
 
-    public Attack Punch() {
+    public Attack MakeAttack() {
         Attack punch = ScriptableObject.CreateInstance<Attack>();
         punch.BuildAttack("punch", attackStat);
         Debug.Log("Enemy punched for a value of: " + attackStat + "!");
