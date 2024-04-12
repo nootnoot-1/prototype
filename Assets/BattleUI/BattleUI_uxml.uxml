@@ -11,12 +11,6 @@
         </ui:VisualElement>
         <ui:VisualElement class = "footer">
             <ui:VisualElement class = "menu-options">
-                <ui:VisualElement class = "menu-option  menu-option-active">
-                    <ui:Label text = "Attack"/>
-                </ui:VisualElement>
-                <ui:VisualElement class = "menu-option">
-                    <ui:Label text = "Item"/>
-                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

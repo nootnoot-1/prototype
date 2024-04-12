@@ -13,13 +13,13 @@ public class Enemy : MonoBehaviour
 
     public Attack Punch() {
         Attack punch = ScriptableObject.CreateInstance<Attack>();
-        punch.setAttackValue(attackStat);
+        punch.BuildAttack("punch", attackStat);
         Debug.Log("Enemy punched for a value of: " + attackStat + "!");
         return punch;
     }
 
     public void RecieveAttack(Attack attack) {
-        int damage = attack.getAttackValue() - defenseStat;
+        int damage = attack.GetAttackValue() - defenseStat;
         if (damage > 0) {
             currentHealth -= damage;
         }

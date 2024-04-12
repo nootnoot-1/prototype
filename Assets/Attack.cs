@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Attack : ScriptableObject
 {
+    private string attackName;
     private int attackValue;
 
-    public void setAttackValue(int value) {
-        this.attackValue = value;
+    public void BuildAttack(string name, int attackValue) {
+        this.attackName = name;
+        this.attackValue = attackValue;
     }
-    public int getAttackValue() {
+
+    public string GetName() {
+        return this.attackName;
+    }
+    public int GetAttackValue() {
         return this.attackValue;
     }
 }

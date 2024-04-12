@@ -51,14 +51,14 @@ public class BattleSystem : MonoBehaviour
     }
 
     void BaseMenuInput(){
+        int maxBmIndex = 1;
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (bmIndex == 0) {
                 //update to AttackMenu
+                battleUI_script.RemoveCurrentMenu();
+                battleUI_script.BuildAttackMenu(player_script.GetAttackNames());
                 //change battleState to AttackMenu
-                Attack attack = player_script.Punch();
-                enemy_script.RecieveAttack(attack);
-                Attack enemyAttack = enemy_script.Punch();
-                player_script.RecieveAttack(enemyAttack);
+                battleState = BattleState.AttackMenu;
             } else if (bmIndex == 1) {
                 //update to ItemMenu
                 //change battleState to ItemMenu
@@ -66,7 +66,8 @@ public class BattleSystem : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A)) {
             if (bmIndex == 0) {
-                // do nothing aka. going left on furthest left element will not go to the furthest right element yet
+                bmIndex = maxBmIndex;
+                battleUI_script.NavigateMenuOptions(bmIndex);
             } else if (bmIndex == 1) {
                 --bmIndex;
                 battleUI_script.NavigateMenuOptions(bmIndex);
@@ -76,14 +77,39 @@ public class BattleSystem : MonoBehaviour
             if (bmIndex == 0) {
                 ++bmIndex;
                 battleUI_script.NavigateMenuOptions(bmIndex);
-            } else if (bmIndex == 1) {
-                // do nothing aka. going right on furthest right element will not go to the furthest left element yet
+            } else if (bmIndex == maxBmIndex) {
+                bmIndex = 0;
+                battleUI_script.NavigateMenuOptions(bmIndex);
             }
         }
     }
-    void ItemMenuInput(){}
-    void AttackMenuInput(){}
-    void TargetMenuInput(){}
-    void EnemyTurnInput(){}
+    void ItemMenuInput() {}
+    void AttackMenuInput() {
+        int maxAmIndex = player_script.GetAttackNames().Count - 1;
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Attack attack = player_script.GetAttackAt(amIndex);
+            enemy_script.RecieveAttack(attack);
+        }
+        if (Input.GetKeyDown(KeyCode.A)) {
+            if (amIndex == 0) {
+                amIndex = maxAmIndex;
+                battleUI_script.NavigateMenuOptions(amIndex);
+            } else {
+                --amIndex;
+                battleUI_script.NavigateMenuOptions(amIndex);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.D)) {
+            if (amIndex == maxAmIndex) {
+                amIndex = 0;
+                battleUI_script.NavigateMenuOptions(amIndex);
+            } else {
+                ++amIndex;
+                battleUI_script.NavigateMenuOptions(amIndex);
+            }
+        }
+    }
+    void TargetMenuInput() {}
+    void EnemyTurnInput() {}
 
 }
